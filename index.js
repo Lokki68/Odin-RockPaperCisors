@@ -1,4 +1,6 @@
-console.log('Hello world')
+const roundContainer = document.querySelector('#round_container')
+const instruction_para = document.querySelector('#instruction_para')
+const buttons = document.querySelectorAll('button')
 
 const choices = [
   "rock",
@@ -6,18 +8,43 @@ const choices = [
   "scissors"
 ]
 
+let round = 1
+
+function resetGame() {
+  round = 1
+  instruction_para.textContent = 'Select your choice ...'
+}
+  
+
 function getComputerChoice() {
   const random = Math.floor(Math.random() *3)
 
   return choices[random]
 }
 
-function getHumanChoice() {
-  
-  const userChoice = prompt('Choose Rock - 0, Paper - 1, Scissors - 2')
 
-  return choices[userChoice]
-}
+buttons.forEach(
+  btn => {
+    btn.addEventListener('click', () => {
+      roundContainer.textContent = round
+
+      if (round >= 5) {
+        resetGame()
+        return
+      }
+
+      playRound(btn.textContent.toLowerCase(), getComputerChoice())
+      round++
+    })
+  }
+)
+
+// function getHumanChoice() {
+  
+//   const userChoice = prompt('Choose Rock - 0, Paper - 1, Scissors - 2')
+
+//   return choices[userChoice]
+// }
 
 function validChoice(choice) {
   return choices.includes(choice)
@@ -30,16 +57,15 @@ function playRound(humanChoice, computerChoice) {
       humanChoice === 'paper' && computerChoice === 'rock' ||
       humanChoice === 'scissors' && computerChoice === 'paper'
     ) {
-      alert('Human Win')
+      displayResult('Human Win')
     } else {
-      alert('Computer win')
+      displayResult('Computer win')
     }
   } else {
-    alert('Error')
+    displayResult('Error')
   }
 }
 
-const computerSelection = getComputerChoice()
-const humanSelection = getHumanChoice()
-
-playRound(humanSelection, computerSelection)
+function displayResult(result) {
+  instruction_para.textContent = result
+}

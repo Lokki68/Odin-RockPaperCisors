@@ -7,10 +7,38 @@
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   >
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
   <title>RockPaperScissors</title>
 </head>
 
 <body>
+  <main class="game_container">
+    <p id="round_container"></p>
+
+    <div class="instruction_container">
+      <!-- Instruction && Result -->
+      <p id="instruction_para">Select your choice ...</p>
+
+    </div>
+
+    <div class="buttons_container">
+      <button
+        id="rock_btn"
+        class="btn"
+      >Rock</button>
+      <button
+        id="paper_btn"
+        class="btn"
+      >Paper</button>
+      <button
+        id="scissors_btn"
+        class="btn"
+      >Scissors</button>
+    </div>
+  </main>
 
   <script src="index.js"></script>
 </body>
